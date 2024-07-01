@@ -1,0 +1,12 @@
+<view class="area-header">
+  <view class="title">{{title}}</view>
+  <view class="right">
+    <view class="slot">
+      <slot></slot>
+    </view>
+    <view class="default">
+      <text class="text">{{rightText}}</text>
+      <image class="arrow-right" src="/assets/image/icons/arrow-right.png" mode="widthFix"></image>
+    </view>
+  </view>
+</view>

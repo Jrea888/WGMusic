@@ -1,0 +1,17 @@
+<wxs src="../../utils/format.wxs" module="format"/>
+
+<view class="song-menu">
+  <area-header title="{{title}}"></area-header>
+
+  <scroll-view class="menu-list" scroll-x>
+    <block wx:for="{{songMenuList}}" wx:key="index">
+      <view class="menu-item">
+        <view class="top">
+          <image class="image" src="{{item.coverImgUrl}}" mode="widthFix"></image>
+          <view class="play-count">{{format.formatCount(item.playCount)}}</view>
+        </view>
+        <view class="bottom-name">{{item.name}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

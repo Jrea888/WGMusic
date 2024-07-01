@@ -1,0 +1,68 @@
+.peak-ranking-content {
+  display: flex;
+  overflow: hidden;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  background-color: #eee;
+}
+
+.peak-ranking-content .ranking-list {
+  flex: 1;
+  padding: 24rpx 12rpx;
+  overflow: hidden;
+}
+
+.peak-ranking-content .ranking-list .title {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.peak-ranking-content .right {
+  position: relative;
+  display: flex;
+  width: 220rpx;
+}
+
+.peak-ranking-content .ranking-list .ranking-item {
+  width: 100%;
+  font-size: 28rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.peak-ranking-content .ranking-list .ranking-item .name {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.peak-ranking-content .ranking-list .ranking-item:nth-child(3) {
+  margin: 8rpx 0;
+}
+
+.peak-ranking-content .ranking-list .ranking-item:nth-child(2) {
+  margin-top: 8rpx;
+}
+
+.peak-ranking-content .left {
+  position: relative;
+  width: 220rpx;
+  /* 处理图片底部 3px 问题 */
+  display: flex;
+}
+
+.peak-ranking-content .left .image {
+  width: 100%;
+}
+
+.peak-ranking-content .left .play-count {
+  position: absolute;
+  right: 4rpx;
+  bottom: 4rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 12rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+}

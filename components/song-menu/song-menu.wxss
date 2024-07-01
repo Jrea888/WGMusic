@@ -1,0 +1,46 @@
+.song-menu {}
+
+.song-menu .menu-list {
+  width: 100vw;
+  white-space: nowrap;
+  position: relative;
+  margin-left: -20rpx;
+}
+
+.song-menu .menu-list .menu-item {
+  display: inline-block;
+  width: 220rpx;
+  margin-left: 20rpx;
+}
+
+.song-menu .menu-list .menu-item .top {
+  position: relative;
+}
+
+.song-menu .menu-list .menu-item .top .image {
+  width: 100%;
+  height: 120rpx;
+  border-radius: 16rpx;
+}
+
+.song-menu .menu-list .menu-item .top .play-count {
+  position: absolute;
+  right: 6rpx;
+  bottom: 12rpx;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 12rpx;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.song-menu .menu-list .menu-item .bottom-name {
+  width: 100%;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}

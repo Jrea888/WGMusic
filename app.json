@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/main-music/main-music",
+    "pages/main-video/main-video",
+    "pages/vidoe-detail/video-detail",
+    "pages/search-page/search-page"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "WGMusic",
+    "navigationBarBackgroundColor": "#fafafa"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "list": [
+      {
+        "text": "音乐",
+        "pagePath": "pages/main-music/main-music",
+        "iconPath": "assets/image/tabbar/music_normal.png",
+        "selectedIconPath": "assets/image/tabbar/music_active.png"
+      },
+      {
+        "text": "视频",
+        "pagePath": "pages/main-video/main-video",
+        "iconPath": "assets/image/tabbar/video_normal.png",
+        "selectedIconPath": "assets/image/tabbar/video_active.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+<wxs src="../../utils/format.wxs" module="format" />
+
+<view class="video-list">
+  <block wx:for="{{videoList}}" wx:key="id">
+    <view class="video-item" bind:tap="videoDetailHandle" data-item="{{item}}">
+      <view class="top-video">
+        <image class="image" src="{{item.cover}}" mode="widthFix" />
+        <view class="info">
+          <view class="count">{{format.formatCount(item.playCount)}}</view>
+          <view class="duration">{{format.formatTime(item.mv.videos[0].duration)}}</view>
+        </view>
+      </view>
+      <view class="bottom-info">{{item.name}} - {{item.artistName}}</view>
+    </view>
+  </block>
+  <view hidden="{{hasMore}}" class="node-bottom">已经到底啦~</view>
+</view>

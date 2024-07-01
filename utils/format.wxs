@@ -1,0 +1,35 @@
+// wxs 只 支持ES5语法 和 CommonJS导出方式
+
+function formatCount(count) {
+  count = Number(count)
+
+  if (count >= 100000000) {
+    return (count / 100000000).toFixed(1) + '亿'
+  } else if (count >= 10000) {
+    return (count / 10000).toFixed(1) + '万'
+  } else {
+    return count
+  }
+}
+
+function padLeft(time) {
+  time = time + ''
+  return ("00" + time).slice(time.length)
+}
+
+function formatTime(time) {
+  // 毫秒转化为秒数
+  time = time / 1000
+
+  // 获取时间
+  minute = Math.floor(time / 60)
+  second = Math.floor(time) % 60
+
+  // 拼接字符串
+  return padLeft(minute) + ":" + padLeft(second)
+}
+
+module.exports = {
+  formatTime: formatTime,
+  formatCount: formatCount
+}

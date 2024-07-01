@@ -1,0 +1,16 @@
+<wxs src="../../utils/format.wxs" module="format"/>
+
+<view class="peak-ranking-content">
+  <view class="ranking-list">
+    <view class="title">{{peakInfo.name}}</view>
+    <block wx:for="{{peakInfo.songList}}" wx:key="index">
+      <view class="ranking-item">
+        {{index + 1}}. {{item.name}} <text class="name">- {{item.ar[0].name}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="left">
+    <image class="image" src="{{peakInfo.coverImgUrl}}" mode="widthFix"></image>
+    <view class="play-count">{{format.formatCount(peakInfo.playCount)}}</view>
+  </view>
+</view>

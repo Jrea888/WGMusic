@@ -1,0 +1,95 @@
+page {
+  padding-top: 225px;
+}
+
+.video-detail {
+  position: relative;
+}
+
+.video {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.content .desc {
+  width: 100%;
+  color: #333;
+  font-size: 24rpx;
+  text-indent: 56rpx;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* -webkit-line-clamp: 4; */
+  -webkit-box-orient: vertical;
+}
+
+.content .desc .create-bg {
+  font-weight: 700;
+}
+
+.info {
+  display: flex;
+  margin: 20rpx 0;
+}
+
+.info .image {
+  width: 186rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-right: 24rpx;
+}
+
+.info .right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.info .right .text-name {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.info .right .song {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.info .right .space-margin {
+  margin: 16rpx 0;
+}
+
+.count-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recommend-list {
+  margin-top: 32rpx;
+}
+
+.recommend-list .rec-title {
+  color: #333;
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  color: #999;
+  font-size: 28rpx;
+  margin: 100rpx 0;
+}

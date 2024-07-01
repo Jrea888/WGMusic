@@ -1,0 +1,85 @@
+page {
+  background-color: #fafafa;
+}
+
+.main-music {
+  width: 100%;
+  height: 100%;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+
+.van-search__content {
+  background-color: #fff !important;
+}
+
+.van-search {
+  padding: 20rpx 0 !important;
+}
+
+/* 轮播图 */
+.swiper {
+  border-radius: 12rpx;
+  overflow: hidden;
+  /* 手机系统 webview */
+  transform: translateY(0);
+}
+
+.swiper-item {
+  /* 设置图片父级 flex，消除底部3px */
+  display: flex;
+}
+
+.swiper-item .swiper-image {
+  width: 100%;
+}
+
+/* 推荐歌单 */
+.song-list {
+  width: 100%;
+}
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-list .item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 32rpx;
+}
+
+.song-list .item:last-child {
+  padding-bottom: 0;
+}
+
+.song-list .item .image {  
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 16rpx;
+}
+
+.song-list .item .content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-left: 28rpx;
+  
+}
+
+.song-list .item .content .music-name {
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.song-list .item .content .info {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.arrow-r .icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+

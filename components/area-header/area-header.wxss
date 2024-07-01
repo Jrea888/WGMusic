@@ -1,0 +1,34 @@
+.area-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+}
+
+.area-header .title {
+  font-weight: 700;
+  font-size: 36rpx;
+}
+
+.area-header .right .default .arrow-right {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.area-header .right .default .text {
+  font-size: 28rpx;
+  color: #777;
+}
+
+.area-header .right .default {
+  display: none;
+  align-items: center;
+}
+
+/* 使用css伪类 判断.slot里面元素是否为空，
+  true：则把同级兄弟元素 .default设置为flex显示（即显示默认插槽）
+  false： 则默认使用.default display: none; 隐藏默认插槽
+*/
+.area-header .right .slot:empty + .default {
+  display: flex;
+}
