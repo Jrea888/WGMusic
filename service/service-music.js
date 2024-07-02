@@ -16,12 +16,25 @@ function getBannersList(type = 0) {
 }
 
 /**
- * 获取排行榜歌曲
+ * 获取巅峰榜歌曲
  * @param {*} id  新歌歌曲-3779629 原创歌曲-2884035 飙升歌曲-19723756 热歌门曲-3778678
  */
-function getSongRanking(id) {
+function getPeakSongRanking(id) {
   return serviceRequest.get({
     url: '/playlist/detail',
+    data: {
+      id
+    }
+  })
+}
+
+/**
+ * 获取歌单详情
+ * @param {*} id 
+ */
+function getSongMenuDetail(id) {
+  return serviceRequest.get({
+    url: '/playlist/detail/dynamic',
     data: {
       id
     }
@@ -47,6 +60,7 @@ function getSongsMenu(cat = "全部", limit = 6, offset = 0) {
 
 export {
   getSongsMenu,
-  getSongRanking,
+  getPeakSongRanking,
   getBannersList,
+  getSongMenuDetail,
 }

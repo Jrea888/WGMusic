@@ -1,0 +1,21 @@
+<view class="songs-detail">
+  <block wx:if="{{ type === 'rank' }}">
+    <area-header title="{{songInfo.name || '热门榜'}}" showRight="{{false}}"></area-header>
+  </block>
+  <block wx:if="{{ type === 'menu' }}">
+    <view>暂无数据，正在开发中....</view>
+  </block>
+
+  <view class="content-list">
+    <block wx:if="{{songInfo.tracks}}">
+      <block wx:for="{{songInfo.tracks}}" wx:key="id">
+        <song-item item="{{item}}" index="{{index}}"></song-item>
+      </block>
+    </block>
+    <block wx:else>
+      <block wx:for="{{songInfo}}" wx:key="id">
+        <song-item item="{{item}}" index="{{index}}"></song-item>
+      </block>
+    </block>
+  </view>
+</view>

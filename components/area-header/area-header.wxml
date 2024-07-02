@@ -1,6 +1,6 @@
 <view class="area-header">
   <view class="title">{{title}}</view>
-  <view class="right">
+  <view class="right" wx:if="{{showRight}}" bind:tap="moreClickHandle">
     <view class="slot">
       <slot></slot>
     </view>

@@ -1,7 +1,7 @@
 .song-menu {}
 
 .song-menu .menu-list {
-  width: 100vw;
+  width: 99vw;
   white-space: nowrap;
   position: relative;
   margin-left: -20rpx;
@@ -9,8 +9,12 @@
 
 .song-menu .menu-list .menu-item {
   display: inline-block;
+  vertical-align: top;
   width: 220rpx;
   margin-left: 20rpx;
+}
+.song-menu .menu-list .menu-item:last-of-type {
+  margin-right: 20rpx;
 }
 
 .song-menu .menu-list .menu-item .top {

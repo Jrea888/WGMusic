@@ -12,7 +12,7 @@
 
   <!-- 歌单 推荐歌曲 热门歌单 -->
   <view class="recommend-song">
-    <area-header title="推荐歌曲"></area-header>
+    <area-header title="推荐歌曲" bind:click="recommendMoreHandle"></area-header>
     <view class="song-list">
       <block wx:for="{{recommendSongsList}}" wx:key="id">
         <view class="item">
@@ -35,11 +35,8 @@
 
   <view class="peak-ranking">
     <area-header title="巅峰榜"></area-header>
-    <!-- 新歌榜 -->
-    <peak-ranking-content peakInfo="{{peakRankings.newRanking}}"></peak-ranking-content>
-    <!-- 原始榜 -->
-    <peak-ranking-content peakInfo="{{peakRankings.originRanking}}"></peak-ranking-content>
-    <!-- 飙升榜 -->
-    <peak-ranking-content peakInfo="{{peakRankings.upRanking}}"></peak-ranking-content>
+    <block wx:for="{{peakRankings}}" wx:key="index">
+      <peak-ranking-content peakInfo="{{item}}" bindtap="rankingItemHandle" data-name="{{item.name}}"></peak-ranking-content>
+    </block>
   </view>
 </view>

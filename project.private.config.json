@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/main-music/main-music",
+          "pathName": "pages/main-music/main-music",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/songs-detail/songs-dedtail",
+          "pathName": "pages/songs-detail/songs-dedtail",
+          "query": "ranking=upRanking&type=rank",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/vidoe-detail/video-detail",
           "pathName": "pages/vidoe-detail/video-detail",
           "query": "id=14725554",

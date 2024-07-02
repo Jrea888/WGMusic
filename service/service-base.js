@@ -1,9 +1,9 @@
 import {
   BASE_URL,
-  TIMR_OUT
+  TIME_OUT
 } from './config'
 
-class SeriveRequest {
+class ServiceRequest {
   baseUrl = ''
 
   constructor() {
@@ -21,7 +21,7 @@ class SeriveRequest {
     return new Promise((resolve, reject) => {
       wx.request({
         data,
-        timeout: TIMR_OUT,
+        timeout: TIME_OUT,
         url: this.baseUrl + url,
         success: (res) => {
           resolve(res.data)
@@ -50,5 +50,7 @@ class SeriveRequest {
     })
   }
 }
-const serviceRequest = new SeriveRequest(BASE_URL)
-export {serviceRequest} 
+
+const serviceRequest = new ServiceRequest(BASE_URL)
+
+export {serviceRequest}

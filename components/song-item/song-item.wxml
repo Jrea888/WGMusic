@@ -1,0 +1,17 @@
+<view class="song-item">
+  <view class="order">
+    <text class="num">{{index + 1}}</text>
+    <image class="iamge" src="{{item.al.picUrl}}" mode="widthFix" />
+  </view>
+  <view class="right">
+    <view class="song-name">{{item.name}}</view>
+    <view class="bottom">
+      <image class="icon" src="/assets/image/icons/sq_icon.png" mode="widthFix" />
+      <view class="info">
+        <text class="author">{{item.ar[0].name}}</text>
+        <text class="dot" wx:if="{{item.alia[0]}}">·</text>
+        <text class="desc" wx:if="{{item.alia[0]}}">{{item.alia[0]}}</text>
+      </view>
+    </view>
+  </view>
+</view>

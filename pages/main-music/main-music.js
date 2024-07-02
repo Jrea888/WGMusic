@@ -115,5 +115,30 @@ Page({
         swiperImageHeight: rect.height
       })
     })
+  },
+  recommendMoreHandle(){
+    this.goToSongsDetailPage('recommendSongsList')
+  },
+  rankingItemHandle(e) {
+    const name = e.currentTarget.dataset.name
+
+    let ranking = ''
+    if (name === '热门榜') {
+      ranking = 'hotRanking'
+    } else if (name === '新歌榜') {
+      ranking = 'newRanking'
+    } else if (name === '原创榜') {
+      ranking = 'originRanking'
+    } else if (name === '飙升榜') {
+      ranking = 'upRanking'
+    }
+
+    this.goToSongsDetailPage(ranking)
+  },
+  // 跳转到榜单详情页面
+  goToSongsDetailPage(ranking) {
+    wx.navigateTo({
+      url: `/pages/songs-detail/songs-dedtail?ranking=${ranking}&type=rank`,
+    })
   }
 })

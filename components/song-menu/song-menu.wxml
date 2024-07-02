@@ -5,7 +5,7 @@
 
   <scroll-view class="menu-list" scroll-x>
     <block wx:for="{{songMenuList}}" wx:key="index">
-      <view class="menu-item">
+      <view class="menu-item" bind:tap="menuItemClickHandle" data-item="{{item}}">
         <view class="top">
           <image class="image" src="{{item.coverImgUrl}}" mode="widthFix"></image>
           <view class="play-count">{{format.formatCount(item.playCount)}}</view>

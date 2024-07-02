@@ -1,0 +1,73 @@
+.song-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e9e9e9;
+}
+
+.song-item .order {
+  display: flex;
+  align-items: center;
+  width: 150rpx;
+}
+
+.song-item .order .num {
+  width: 44rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.song-item .order .iamge {
+  width: 100rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin: 0 12rpx;
+}
+
+.song-item .right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.song-item .right .song-name {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 700;
+}
+
+.song-item .right .bottom {
+  display: flex;
+  align-items: center;
+  margin-top: 8rpx;
+}
+
+.song-item .right .bottom .info {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.song-item .right .bottom .info .author {
+  flex: none;
+  font-size: 26rpx;
+}
+
+.song-item .right .bottom .info .dot {
+  margin: 0 4rpx;
+}
+
+.song-item .right .bottom .info .desc {
+  display: inline-block;
+  width: 76%;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.song-item .right .bottom .icon {
+  width: 50rpx;
+  margin-right: 8rpx;
+}
