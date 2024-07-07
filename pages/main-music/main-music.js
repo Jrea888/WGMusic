@@ -12,6 +12,7 @@ import {
   rankingsSongsState
 } from '../../store/index'
 
+// 将需要做节流的函数 传递到第一个参数
 const throttleQueryRect = throttle(queryRect, 1000)
 
 Page({

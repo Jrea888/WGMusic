@@ -6,6 +6,5 @@ Component({
     }
   },
   data: {},
-  methods: {
-  }
+  methods: {}
 })

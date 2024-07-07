@@ -1,0 +1,10 @@
+<view class="search-item">
+  <view class="order">{{index}}</view>
+  <view class="content">
+    <view class="name">{{item.name}}</view>
+    <view class="author">
+      <image class="image" src="/assets/image/icons/sq_icon.png" mode="widthFix"></image>
+      <text class="text">{{item.artists[0].name}}</text>
+    </view>
+  </view>
+</view>

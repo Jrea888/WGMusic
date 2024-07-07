@@ -1,2 +1,46 @@
-<!--pages/search-page/search-page.wxml-->
-<text>pages/search-page/search-page.wxml</text>
+<view class="search-page">
+  <!-- 搜索输入框 取消按钮逻辑、防抖函数、副文本 -->
+  <van-search 
+    class="search" 
+    shape="round" 
+    background="#f7f7f7" 
+    value="{{searchValue}}"
+    show-action="{{searchValue}}"
+    bind:change="searchChangeHandle"
+    bind:search="searchActionHandle"
+  ></van-search>
+
+  <!-- 热门搜索 -->
+  <view class="hot" wx:if="{{!searchValue.length && !suggestSongs.length}}">
+    <area-header title="热门搜索" showRight="{{false}}"></area-header>
+    <view class="list">
+      <block wx:for="{{hotKeywords}}" wx:key="index">
+        <view class="item-tag" data-keyword="{{item.first}}" bind:tap="hotTagClickHandle">{{item.first}}</view>      
+      </block>
+    </view>
+  </view>
+
+  <!-- 建议搜索 -->
+  <view class="suggest" wx:elif="{{suggestSongs.length && !searchList.length}}">
+    <view class="title">搜索 "{{searchValue}}"</view>
+    <view class="list">
+      <block wx:for="{{suggestSongs}}" wx:key="index">
+        <view class="item" bind:tap="suggestKeywordClickHandle" data-keyword="{{item.keyword}}">
+          <image class="icon" src="/assets/image/icons/search_icon.png" mode="widthFix"></image>
+          <!-- <text class="text">{{item.keyword}}</text> -->
+          <rich-text nodes="{{suggestSongsNodes[index]}}"></rich-text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="result" wx:elif="searchList.length">
+    <view class="title">最佳匹配</view>
+    <view class="list">
+      <block wx:for="{{searchList}}" wx:key="index">
+          <search-item item="{{item}}" index="{{index + 1}}"></search-item>
+      </block>
+    </view>
+  </view>
+</view>

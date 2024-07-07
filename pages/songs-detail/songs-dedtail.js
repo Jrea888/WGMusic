@@ -16,7 +16,6 @@ Page({
    */
   onLoad(options) {
     const type = options.type
-    console.log(type)
     this.setData({
       type
     })

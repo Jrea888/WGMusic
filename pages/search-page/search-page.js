@@ -1,66 +1,103 @@
-// pages/search-page/search-page.js
+import {
+  serviceSearch
+} from '../../service/index'
+
+import {
+  debounce
+} from '../../utils/debounce-throttle'
+
+import {
+  searchKeywordsTransformNodes
+} from '../../utils/search-keywords-transform-nodes'
+
+const debounceGetSearchSuggest = debounce(serviceSearch.getSearchSuggestList, 300)
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    searchValue: '',
+    searchList: [],
+    hotKeywords: [],
+    suggestSongs: [],
+    suggestSongsNodes: [],
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 获取页面数据
+    this.getPageData()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  getPageData() {
+    serviceSearch.getSearchHot().then(res => {
+      this.setData({
+        hotKeywords: res.result.hots
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  async searchActionHandle() {
+    const {
+      result
+    } = await serviceSearch.getSearchResult(this.data.searchValue)
+    this.setData({
+      searchList: result.songs
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  // 热门搜索词，点击处理
+  async hotTagClickHandle(e) {
+    const searchValue = e.currentTarget.dataset.keyword
+    this.setData({
+      searchValue
+    })
+    await this.searchActionHandle()
   },
+  // 搜索输入框改变时触发
+  searchChangeHandle(event) {
+    // 拿取 搜索关键字
+    const searchValue = event.detail
+    // 设置值
+    this.setData({
+      searchValue
+    })
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
+    // 搜索词为空时，将搜索列表和搜索词建议列表清空
+    if (!searchValue.length) {
+      this.setData({
+        searchList: [],
+        suggestSongs: []
+      })
+      // 取消延迟执行的函数
+      debounceGetSearchSuggest.cancel()
+      return
+    }
 
+    // 根据关键词 进行搜索，性能优化：防抖处理
+    debounceGetSearchSuggest(searchValue).then(data => {
+      const suggestSongs = data.result.allMatch
+      this.setData({
+        suggestSongs
+      })
+
+      // 显示搜索关键词列表 需要 把数据转化成对应的格式
+      if (suggestSongs) {
+        const keywordList = suggestSongs.map(v => v.keyword)
+        console.log(keywordList)
+        const suggestSongsNodes = []
+        for (const keyword of keywordList) {
+          const nodes = searchKeywordsTransformNodes(keyword, searchValue)
+          suggestSongsNodes.push(nodes)
+        }
+        this.setData({
+          suggestSongsNodes
+        })
+      }
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  // 搜索建议词列表点击处理
+  async suggestKeywordClickHandle(e) {
+    const searchValue = e.currentTarget.dataset.keyword
+    this.setData({
+      searchValue
+    })
+    await this.searchActionHandle()
   }
 })
