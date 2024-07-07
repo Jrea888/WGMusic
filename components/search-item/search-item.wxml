@@ -1,4 +1,4 @@
-<view class="search-item">
+<view class="search-item" bind:tap="searchSongItemClickHandle">
   <view class="order">{{index}}</view>
   <view class="content">
     <view class="name">{{item.name}}</view>

@@ -80,7 +80,6 @@ Page({
       // 显示搜索关键词列表 需要 把数据转化成对应的格式
       if (suggestSongs) {
         const keywordList = suggestSongs.map(v => v.keyword)
-        console.log(keywordList)
         const suggestSongsNodes = []
         for (const keyword of keywordList) {
           const nodes = searchKeywordsTransformNodes(keyword, searchValue)

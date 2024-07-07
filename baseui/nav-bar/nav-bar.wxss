@@ -1,0 +1,39 @@
+.nav .nav-bar {
+  display: flex;
+  width: 100%;
+}
+
+.nav .nav-bar .left, .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+}
+
+.nav .nav-bar .center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.nav .nav-bar .left .left-arrow .icon {
+  width: 44rpx;
+  display: block;
+}
+
+.nav .nav-bar .left .left-arrow {
+  display: none;
+}
+
+.nav .nav-bar .left .left-slot:empty + .left-arrow {
+  display: block;
+}
+
+.nav .nav-bar .center .center-title {
+  display: none;
+}
+
+.nav .nav-bar .center .center-slot:empty + .center-title {
+  display: block;
+}

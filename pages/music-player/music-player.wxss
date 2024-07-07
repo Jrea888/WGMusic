@@ -1,0 +1,119 @@
+pager {
+  background-color: #fff;
+}
+
+.bg-image,
+.bg-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-cover {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(30rpx);
+}
+
+.tab {
+  display: flex;  
+  font-size: 28rpx;
+  color: #999;
+}
+
+.tab .divider {
+  margin: 0 8rpx;
+}
+
+.tab .active {
+  color: #fff;
+}
+
+.content .music {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 30rpx 60rpx;
+}
+
+.content .music .album {
+  flex: 5;
+}
+
+.content .music .album .image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.content .music .info {
+  margin: 20rpx 0;
+}
+
+.content .music .info .title  {
+  color: #fff;
+  font-size: 36rpx;
+  margin-bottom: 16rpx;
+}
+
+.content .music .info .bottom {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.content .music .info .bottom  .small-name {
+  margin-bottom: 16rpx;
+}
+
+.content .music .lyric {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: #fff;
+}
+
+.content .music .progress {
+  margin: 20rpx 0;
+}
+.content .music .progress .slider {
+  margin: 0 0 18rpx 20rpx;
+}
+
+.content .music .progress .time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: #999;
+}
+
+.content .music .progress .time .current-time {
+  margin-left: 10rpx;
+}
+
+.content .music .operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 0 30rpx;
+}
+
+.content .music .operation .btn {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.content .music .operation .btn-order {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.content .music .operation .btn-pause {
+  width: 130rpx;
+  height: 130rpx;
+}

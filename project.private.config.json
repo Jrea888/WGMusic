@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/music-player/music-player",
+          "pathName": "pages/music-player/music-player",
+          "query": "id=2605280085",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/search-page/search-page",
           "pathName": "pages/search-page/search-page",
           "query": "",
