@@ -2,7 +2,7 @@ import {
   serviceRequest
 } from './service-base'
 
-function getSongInfo(id) {
+function getSongDetail(id) {
   return serviceRequest.get({
     url: '/song/detail',
     data: {
@@ -11,6 +11,16 @@ function getSongInfo(id) {
   })
 }
 
+function getSongLyric(id) {
+  return serviceRequest.get({
+    url: '/lyric',
+    data: {
+      id
+    }
+  })
+}
+
 export {
-  getSongInfo
+  getSongDetail,
+  getSongLyric
 }

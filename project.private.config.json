@@ -11,7 +11,21 @@
         {
           "name": "pages/music-player/music-player",
           "pathName": "pages/music-player/music-player",
+          "query": "id=2130248687",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/music-player/music-player",
+          "pathName": "pages/music-player/music-player",
           "query": "id=2605280085",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/music-player/music-player",
+          "pathName": "pages/music-player/music-player",
+          "query": "id=2078684880",
           "launchMode": "default",
           "scene": null
         },

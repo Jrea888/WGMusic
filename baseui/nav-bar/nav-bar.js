@@ -14,5 +14,9 @@ Component({
     navBarHeight: globalData.navBarHeight,
     statusBarHeight: globalData.statusBarHeight
   },
-  methods: {}
+  methods: {
+    backHandle() {
+      this.triggerEvent('back')
+    }
+  }
 })

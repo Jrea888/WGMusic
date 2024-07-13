@@ -3,3 +3,9 @@ page {
   box-sizing: border-box;
   background-color: #fafafa;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

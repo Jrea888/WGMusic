@@ -18,7 +18,7 @@ pager {
 }
 
 .tab {
-  display: flex;  
+  display: flex;
   font-size: 28rpx;
   color: #999;
 }
@@ -53,7 +53,7 @@ pager {
   margin: 20rpx 0;
 }
 
-.content .music .info .title  {
+.content .music .info .title {
   color: #fff;
   font-size: 36rpx;
   margin-bottom: 16rpx;
@@ -64,7 +64,7 @@ pager {
   color: #999;
 }
 
-.content .music .info .bottom  .small-name {
+.content .music .info .bottom .small-name {
   margin-bottom: 16rpx;
 }
 
@@ -79,6 +79,7 @@ pager {
 .content .music .progress {
   margin: 20rpx 0;
 }
+
 .content .music .progress .slider {
   margin: 0 0 18rpx 20rpx;
 }
@@ -102,6 +103,11 @@ pager {
   margin: 20rpx 0 30rpx;
 }
 
+.content .music .lyric {
+  color: #26ce8a;
+  font-size: 28rpx;
+}
+
 .content .music .operation .btn {
   display: inline-block;
   width: 60rpx;
@@ -116,4 +122,33 @@ pager {
 .content .music .operation .btn-pause {
   width: 130rpx;
   height: 130rpx;
+}
+
+/* 歌词部分 */
+.lyric-list {
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.lyric-list .item {
+  height: 35px;
+  line-height: 35px;
+  font-size: 28rpx;
+  text-align: center;
+  color: #989898;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lyric-list .item.active {
+  color: #26ce8a;
+  font-size: 36rpx;
 }

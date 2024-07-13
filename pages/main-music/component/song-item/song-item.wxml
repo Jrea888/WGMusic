@@ -1,0 +1,10 @@
+<view class="item" bind:tap="songItemClickHandle">
+  <image class="image" src="{{item.al.picUrl}}" mode="widthFix"></image>
+  <view class="content">
+    <text class="music-name">{{item.name}}</text>
+    <text class="info">{{item.ar[0].name}} - {{item.al.name}}</text>
+  </view>
+  <view class="arrow-r">
+    <image class="icon" src="/assets/image/icons/arrow-right.png"></image>
+  </view>
+</view>
