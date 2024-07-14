@@ -6,7 +6,7 @@ page {
   width: 100%;
   height: 100%;
   padding: 0 24rpx;
-  padding-bottom: 4rpx;
+  padding-bottom: 48px;
   box-sizing: border-box;
 }
 
@@ -43,4 +43,138 @@ page {
 .song-list {
   display: flex;
   flex-direction: column;
+}
+
+/* 歌曲播放栏 */
+.player-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: #fafafa;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-bar .left,
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.player-bar .left .avatar {
+  position: relative;
+  top: -8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.player-bar .left .author-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12rpx;
+  font-size: 12px;
+  color: #333;
+}
+
+.player-bar .left .author-info .author {
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.player-bar .right .icon {
+  width: 25px;
+  height: 25px;
+}
+
+.player-bar .right .status {
+  margin: 0 20rpx;
+}
+
+.player-bar .right .playlist {
+  width: 32px;
+  height: 32px;
+  margin-left: 12rpx;
+}
+
+
+
+.player-bar .right .prev-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  margin-right: 3rpx;
+  position: relative;
+}
+
+.player-bar .right .prev-btn::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-right: 12px solid #26CE8A;
+  border-bottom: 9px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.player-bar .right .prev-btn::after {
+  position: absolute;
+  content: "";
+  width: 4px;
+  height: 14px;
+  background-color: #26CE8A;
+  border-radius: 2px;
+}
+
+.player-bar .right .next-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.player-bar .right .next-btn::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #26CE8A;
+}
+
+.player-bar .right .next-btn::after {
+  position: absolute;
+  right: 0;
+  content: "";
+  width: 4px;
+  height: 14px;
+  background-color: #26CE8A;
+  border-radius: 2px;
+}
+
+/* Avatar 动画 */
+@keyframes animationAvatar {
+  form {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animation {
+  animation: animationAvatar 16s linear infinite;
 }

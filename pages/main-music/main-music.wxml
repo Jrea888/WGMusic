@@ -30,4 +30,21 @@
       <peak-ranking-content peakInfo="{{item}}" bindtap="rankingItemHandle" data-name="{{item.name}}"></peak-ranking-content>
     </block>
   </view>
+
+  <!-- 底部歌曲播放栏 -->
+  <view class="player-bar">
+    <view class="left">
+      <image class="avatar animation" src="{{currentSong.al.picUrl}}" mode="aspectFill" style="animation-play-state: {{playAnimation}};"></image>
+      <view class="author-info">
+        <text>{{currentSong.name}}</text>
+        <text class="author"> {{currentAuthor}}</text>
+      </view>
+    </view>
+    <view class="right"> 
+        <view class="prev-btn" bind:tap="playPrevSongHandle"></view>
+        <image class="icon status" src="/assets/image/music/{{ isPlaying ? 'pause' : 'play' }}_icon.png" bind:tap="musicStatusChangeHandle"></image>
+        <view class="next-btn" bind:tap="playNextSongHnadle"></view>
+        <image class="icon playlist" src="/assets/image/music/playlist_icon.png" mode=""></image>
+      </view>
+  </view>
 </view>

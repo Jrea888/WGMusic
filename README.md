@@ -1,6 +1,6 @@
 # WGMusic
 ## 项目展示
-<img src="https://s21.ax1x.com/2024/07/14/pk4q5fU.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qopF.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qHX9.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qqmR.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qTl4.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4q76J.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qL01.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qOTx.png" width="400px"/>
+<img src="https://s21.ax1x.com/2024/07/14/pk4q5fU.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk5Mhse.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk5MIZd.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qqmR.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qTl4.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4q76J.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qL01.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk5MgG6.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qOTx.png" width="400px"/>  <img src="https://s21.ax1x.com/2024/07/14/pk5MRxO.png" width="400px"/>
 
 # 学习笔记
 

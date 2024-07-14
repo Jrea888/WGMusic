@@ -4,10 +4,6 @@
   padding-bottom: 32rpx;
 }
 
-.item:last-child {
-  padding-bottom: 0;
-}
-
 .item .image {
   width: 120rpx;
   height: 120rpx;

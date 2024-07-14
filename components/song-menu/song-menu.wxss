@@ -1,5 +1,3 @@
-.song-menu {}
-
 .song-menu .menu-list {
   width: 99vw;
   white-space: nowrap;

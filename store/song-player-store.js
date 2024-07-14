@@ -17,6 +17,7 @@ const playerStore = new HYEventStore({
     currentLyricText: '',
 
     isPlaying: false,
+    isFirstPlay: true,
     playModeIndex: 0, // 0：顺序播放 1：单曲循环 2：随机播放
 
     playListIndex: 0,
@@ -59,8 +60,11 @@ const playerStore = new HYEventStore({
       audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
       audioContext.autoplay = true
 
-      // 3.监听 audioContext 相关事件
-      this.dispatch("setupAudioContextListenerAction")
+      if (ctx.isFirstPlay) {
+        // 3.监听 audioContext 相关事件
+        this.dispatch("setupAudioContextListenerAction")
+        ctx.isFirstPlay = false
+      }
     },
     setupAudioContextListenerAction(ctx) {
       // 1.监听歌曲可以播放
@@ -68,7 +72,7 @@ const playerStore = new HYEventStore({
         audioContext.play()
       })
   
-      // 1.监听时间改变
+      // 2.监听时间改变
       audioContext.onTimeUpdate(() => {
         // 获取当前时间 秒 转化 为 毫秒
         const currentTime = audioContext.currentTime * 1000
@@ -97,12 +101,18 @@ const playerStore = new HYEventStore({
           ctx.currentLyricIndex = currentIndex
         }
       })
+
+      // 3.监听歌曲播放完成
+      audioContext.onEnded(() =>{
+        this.dispatch("switchSongAction")
+      })
     },
     // 歌曲暂停 和 播放
     musicPlayStatusChangeAction(ctx, isPlaying) {
       ctx.isPlaying = isPlaying
       ctx.isPlaying ? audioContext.play() : audioContext.pause()
     },
+    // 歌曲列表的 上一首和下一首 切换
     switchSongAction(ctx, isNext = true) {
       // 1.获取当前播放歌曲的 索引值
       let index = ctx.playListIndex

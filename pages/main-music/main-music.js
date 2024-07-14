@@ -27,6 +27,10 @@ Page({
       newRanking: {}, // 新歌榜
       originRanking: {} // 原创榜
     },
+    isPlaying: false,
+    currentAuthor: '',
+    playAnimation: 'paused',
+    currentSong: {},
     hotSongMenu: [], // 热门歌单
     recommendSongMenu: [], // 推荐歌单
     recommendSongsList: [] // 推荐歌曲: 热门歌曲
@@ -34,42 +38,22 @@ Page({
     // 推荐歌单：华语
     // 巅峰榜：新歌榜、原创榜、飙升榜
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-    this.initFetchData()
+    this.initPagerData()
 
     // 1.发起共享数据请求
     rankingsSongsState.dispatch('getRankingSongsAction')
 
-    // 2.从发起的请求中获取对应的数据 -- 推荐歌曲列表
-    rankingsSongsState.onState('recommendSongsList', (list) => {
-      if (!list.length) {
-        return
-      }
-
-      const recommendSongsList = list.slice(0, 6)
-      this.setData({
-        recommendSongsList
-      })
-    })
-    
-    // 热门歌单
-    rankingsSongsState.onState('newRanking', this.peakRankingDataHandle('newRanking'))
-    // 原创歌单
-    rankingsSongsState.onState('originRanking', this.peakRankingDataHandle('originRanking'))
-    // 飙升歌单
-    rankingsSongsState.onState('upRanking', this.peakRankingDataHandle('upRanking'))
+    // 2.从store获取共享的数据
+    this.setupStoreListener()
   },
-  initFetchData() {
+  initPagerData() {
     // 请求banner轮播图列表
     serviceMusic.getBannersList().then(res => {
       this.setData({
         banners: res.banners
       })
     })
-
     // 获取热门歌单，是全部数据
     serviceMusic.getSongsMenu().then(res => {
       this.setData({
@@ -148,5 +132,58 @@ Page({
     // 设置 playListSongs, playListIndex
     playerStore.setState('playListIndex', index)
     playerStore.setState('playListSongs', this.data.recommendSongsList)
+  },
+  playPrevSongHandle() {
+    playerStore.dispatch("switchSongAction", false)
+  },
+  playNextSongHnadle() {
+    playerStore.dispatch("switchSongAction")
+  },
+  // 控制歌曲播放和暂停
+  musicStatusChangeHandle() {
+    playerStore.dispatch("musicPlayStatusChangeAction", !this.data.isPlaying)
+  },
+  setupStoreListener() {
+    // 1.从发起的请求中，获取对应的数据 -- 推荐歌曲列表
+    rankingsSongsState.onState('recommendSongsList', (list) => {
+      if (!list.length) {
+        return
+      }
+
+      const recommendSongsList = list.slice(0, 6)
+      this.setData({
+        recommendSongsList
+      })
+    })
+    
+    // 热门歌单
+    rankingsSongsState.onState('newRanking', this.peakRankingDataHandle('newRanking'))
+    // 原创歌单
+    rankingsSongsState.onState('originRanking', this.peakRankingDataHandle('originRanking'))
+    // 飙升歌单
+    rankingsSongsState.onState('upRanking', this.peakRankingDataHandle('upRanking'))
+
+    // 2.获取当前播放歌曲信息
+    playerStore.onStates(["currentSong", "isPlaying", "currentAuthor"], ({
+      currentSong,
+      isPlaying,
+      currentAuthor
+    }) =>{  
+      if (currentSong) {
+        this.setData({ currentSong })
+      }
+      
+      if (currentAuthor) {
+        this.setData({ currentAuthor })
+      }
+
+      if (isPlaying !== undefined) {
+        // 获取歌曲播放状态，设置旋转动画
+        this.setData({
+          isPlaying,
+          playAnimation: isPlaying ? 'running' : 'paused'
+        })
+      }
+    })
   }
 })
