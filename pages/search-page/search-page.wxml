@@ -39,7 +39,7 @@
     <view class="title">最佳匹配</view>
     <view class="list">
       <block wx:for="{{searchList}}" wx:key="index">
-          <search-item item="{{item}}" index="{{index + 1}}"></search-item>
+        <search-item item="{{item}}" index="{{index + 1}}" data-index="{{index}}" bind:tap="searchItemClickHandle"></search-item>
       </block>
     </view>
   </view>

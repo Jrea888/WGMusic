@@ -17,12 +17,30 @@ const playerStore = new HYEventStore({
     currentLyricText: '',
 
     isPlaying: false,
-    playModeIndex: 0, // 0：循环播放 1：单曲循环 2：随机播放
+    playModeIndex: 0, // 0：顺序播放 1：单曲循环 2：随机播放
+
+    playListIndex: 0,
+    playListSongs: []
   },
   actions: {
-    playSongMusicByIdAction(ctx, { id }) {
+    playSongMusicByIdAction(ctx, { id, isRefresh = false }) {
+      // 对于同一首歌不再做播放逻辑处理
+      if (ctx.id === id && !isRefresh) {
+        this.dispatch("musicPlayStatusChangeAction", true)
+        return
+      }
       // 1.获取数据
       ctx.id = id
+
+      // 重置数据
+      ctx.isPlaying = true
+      ctx.currentSong = {}
+      ctx.totalDuration = 0
+      ctx.lyricInfos = []
+      ctx.currentTime = 0
+      ctx.currentLyricIndex = 0
+      ctx.currentLyricText = ""
+
       // 获取歌曲详情
       servicePlayer.getSongDetail(id).then(res => {
         ctx.currentSong = res.songs[0]
@@ -58,21 +76,21 @@ const playerStore = new HYEventStore({
         // 1.根据当前时间修改 currentTime
         ctx.currentTime = currentTime
   
+        if (!ctx.lyricInfos.length) {
+          return
+        }
+  
         // 2.根据当前时间查找当前播放的歌词
-        let i = 0
-        for (; i < ctx.lyricInfos.length; i++) {
-          const lyricInfo = ctx.lyricInfos[i]
+        let index = 0
+        for (; index < ctx.lyricInfos.length; index++) {
+          const lyricInfo = ctx.lyricInfos[index]
           if (currentTime < lyricInfo.time) {
             break
           }
         }
   
-        if (!ctx.lyricInfos.length) {
-          return
-        }
-  
         // 设置当前歌词的索引和和内容 前一条词文 (当for循环嵌套太多可以使用此方式)
-        const currentIndex = i - 1
+        const currentIndex = index - 1
         if (ctx.currentLyricIndex !== currentIndex) {
           const currentLyricInfo = ctx.lyricInfos[currentIndex]
           ctx.currentLyricText = currentLyricInfo.text
@@ -81,9 +99,44 @@ const playerStore = new HYEventStore({
       })
     },
     // 歌曲暂停 和 播放
-    musicPlayStatusChangeAction(ctx) {
-      ctx.isPlaying = !ctx.isPlaying
+    musicPlayStatusChangeAction(ctx, isPlaying) {
+      ctx.isPlaying = isPlaying
       ctx.isPlaying ? audioContext.play() : audioContext.pause()
+    },
+    switchSongAction(ctx, isNext = true) {
+      // 1.获取当前播放歌曲的 索引值
+      let index = ctx.playListIndex
+
+      // 2.根据播放模式，选择对应的切换逻辑
+      switch (ctx.playModeIndex) {
+        case 0: // 顺序播放
+          index = isNext ? index + 1 : index - 1
+          if (index === ctx.playListSongs.length) {
+            index = 0
+          }
+          if (index === -1) {
+            index = ctx.playListSongs.length - 1
+          }
+          break;
+        case 1: // 单曲循环
+          break;
+        case 2: // 随机播放 0~1 * length, 向下取整
+          index = Math.floor(Math.random() * ctx.playListSongs.length)
+          break;
+      }
+
+      // 3.获取当前播放的歌曲
+      let currentSong = ctx.playListSongs[index]
+      if (!currentSong) {
+        // 如果当前的播放歌曲为空时，取全局的当前播放歌曲
+        currentSong = ctx.currentSong
+      } else {
+        // 否则才 更新 播放列表的索引值
+        ctx.playListIndex = index
+      }
+
+      // 4. 对获取的歌曲进行播放 isRefresh:是否需要重头播放
+      this.dispatch("playSongMusicByIdAction", {id: currentSong.id, isRefresh: true})
     }
   }
 })

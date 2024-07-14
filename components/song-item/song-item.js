@@ -1,3 +1,5 @@
+import {playerStore} from '../../store/index'
+
 Component({
   properties: {
     item: {
@@ -10,5 +12,17 @@ Component({
     }
   },
   data: {},
-  methods: {}
+  methods: {
+    songDetailItemClickHanle() {
+      const id = this.properties.item.id
+      wx.navigateTo({
+        url: `/pages/music-player/music-player?id=${id}`,
+      })
+
+      // 2.请求歌曲数据
+      playerStore.dispatch('playSongMusicByIdAction', {
+        id
+      })
+    }
+  }
 })

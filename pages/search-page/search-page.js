@@ -1,14 +1,13 @@
 import {
   serviceSearch
 } from '../../service/index'
-
 import {
   debounce
 } from '../../utils/debounce-throttle'
-
 import {
   searchKeywordsTransformNodes
 } from '../../utils/search-keywords-transform-nodes'
+import {playerStore} from '../../store/index'
 
 const debounceGetSearchSuggest = debounce(serviceSearch.getSearchSuggestList, 300)
 
@@ -98,5 +97,11 @@ Page({
       searchValue
     })
     await this.searchActionHandle()
+  },
+  searchItemClickHandle(event) {
+    const index = event.currentTarget.dataset.index
+    // 设置 playListSongs, playListIndex
+    playerStore.setState('playListIndex', index)
+    playerStore.setState('playListSongs', this.data.searchList)
   }
 })

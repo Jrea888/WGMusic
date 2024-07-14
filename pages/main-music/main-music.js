@@ -9,11 +9,12 @@ import {
 } from '../../utils/query-rect'
 
 import {
+  playerStore,
   rankingsSongsState
 } from '../../store/index'
 
 // 将需要做节流的函数 传递到第一个参数
-const throttleQueryRect = throttle(queryRect, 1000)
+const throttleQueryRect = throttle(queryRect, 1000, {trailing: true})
 
 Page({
   data: {
@@ -141,5 +142,11 @@ Page({
     wx.navigateTo({
       url: `/pages/songs-detail/songs-dedtail?ranking=${ranking}&type=rank`,
     })
+  },
+  recommendSongItemClickHandle(event) {
+    const index = event.currentTarget.dataset.index
+    // 设置 playListSongs, playListIndex
+    playerStore.setState('playListIndex', index)
+    playerStore.setState('playListSongs', this.data.recommendSongsList)
   }
 })

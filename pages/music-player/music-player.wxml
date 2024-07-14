@@ -57,9 +57,9 @@
     <view class="operation">
     <!-- playModeIndex -->
       <image class="btn btn-order" bind:tap="playModeSwitchHandle" src="/assets/image/player/play_{{playModeName}}.png"></image>
-      <image class="btn btn-prev" src="/assets/image/player/play_prev.png" mode=""></image>
+      <image class="btn btn-prev" bind:tap="prevSongHandle" src="/assets/image/player/play_prev.png" mode=""></image>
       <image class="btn btn-pause" bind:tap="playStatusHandle" src="/assets/image/player/play_{{playingName}}.png" mode=""></image>
-      <image class="btn btn-next" src="/assets/image/player/play_next.png" mode=""></image>
+      <image class="btn btn-next" bind:tap="nextSongHandle" src="/assets/image/player/play_next.png" mode=""></image>
       <image class="btn btn-music" src="/assets/image/player/play_music.png" mode=""></image>
     </view>
   </swiper-item>

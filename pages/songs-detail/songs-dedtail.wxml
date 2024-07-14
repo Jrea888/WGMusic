@@ -9,12 +9,12 @@
   <view class="content-list">
     <block wx:if="{{songInfo.tracks}}">
       <block wx:for="{{songInfo.tracks}}" wx:key="id">
-        <song-item item="{{item}}" index="{{index}}"></song-item>
+        <song-item item="{{item}}" index="{{index}}" data-index="{{index}}" bind:tap="songDetailClickItemHandle"></song-item>
       </block>
     </block>
     <block wx:else>
       <block wx:for="{{songInfo}}" wx:key="id">
-        <song-item item="{{item}}" index="{{index}}"></song-item>
+        <song-item item="{{item}}" index="{{index}}" data-index="{{index}}" bind:tap="songDetailClickItemHandle"></song-item>
       </block>
     </block>
   </view>

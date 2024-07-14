@@ -28,9 +28,6 @@ Page({
     isPlaying: false,
     playingName: 'pause'
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const id = options.id
     this.setData({
@@ -65,8 +62,6 @@ Page({
     // 1.计算出当前播放的 currentTime
     const currentTime = this.data.totalDuration * value / 100
 
-    console.log(currentTime, '----->currentTime')
-
     // 2.设置音频context播放currentTime位置的音乐
     audioContext.pause()
     audioContext.seek(currentTime / 1000)
@@ -95,7 +90,13 @@ Page({
     playerStore.setState('playModeIndex', newModeIndex)
   },
   playStatusHandle() {
-    playerStore.dispatch("musicPlayStatusChangeAction")
+    playerStore.dispatch("musicPlayStatusChangeAction", !this.data.isPlaying)
+  },
+  prevSongHandle() {
+    playerStore.dispatch("switchSongAction", false)
+  },
+  nextSongHandle() {
+    playerStore.dispatch("switchSongAction")
   },
   setupPlayerStoreListener() {
     // 1.监听 currentSong totalDuration lyricInfos currentAuthor
@@ -163,9 +164,10 @@ Page({
       if (isPlaying !== undefined) {
         this.setData({
           isPlaying,
-          playingName: isPlaying ? 'resume' : 'pause'
+          playingName: isPlaying ? 'pause' : 'resume'
         })
       }
     })
-  }
+  },
+  onUnload() {}
 })

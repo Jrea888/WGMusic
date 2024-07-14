@@ -4,6 +4,7 @@ import {
 import {
   rankingsSongsState
 } from '../../store/index'
+import {playerStore} from '../../store/index'
 
 Page({
   data: {
@@ -38,5 +39,19 @@ Page({
     this.setData({
       songInfo: res
     })
+  },
+  songDetailClickItemHandle(event) {
+    const index = event.currentTarget.dataset.index
+
+    let playList = []
+    if (this.data.songInfo.tracks) {
+      playList = this.data.songInfo.tracks
+    } else {
+      playList = this.data.songInfo
+    }
+    
+    // 设置 playListSongs, playListIndex
+    playerStore.setState('playListIndex', index)
+    playerStore.setState('playListSongs', playList)
   }
 })

@@ -1,7 +1,6 @@
 # WGMusic
 ## 项目展示
-
-
+<img src="https://s21.ax1x.com/2024/07/14/pk4q5fU.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qopF.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qHX9.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qqmR.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qTl4.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4q76J.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qL01.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qOTx.png" width="400px"/>
 
 # 学习笔记
 
@@ -9,7 +8,7 @@
 
 * 认识小程序开发
 * 项目开发前准备
-* 小程序文档阅读（重要）
+* 小程序文档阅读
 * 小程序整体架构
 
 ## 项目的核心技术
@@ -48,6 +47,9 @@
 
 * 网络请求封装
 
+  * 结合Promise实现
+
+
 * 富文本功能开发
 
   * 搜索热词
@@ -61,12 +63,15 @@
 * 模糊搜索功能
 
 * 防抖场景应用
+  * 搜索输入
 
 * 音乐歌曲展示、同步
 
 * `vantUI`组件库使用
 
 * npm第三方包管理方案
+  * @vant/weapp
+
 
 ## 项目的功能实现
 
@@ -78,6 +83,33 @@
 * 歌曲详情开发
 * 歌曲列表详情
 * 歌曲播放页面
+
+```js
+歌曲进度条状态：
+发生变化：
+	1.获取slider变化的值 * 歌曲总时长(毫秒) / 100 = 当前播放的时间点
+	2.设置音频上下文播放currentTime位置的音乐,即：当前播放的时间点 / 1000
+	3.更新sliderValue，且将isSliderChanging设置false
+拖动时：
+	1.获取当前拖动value,
+    2.计算currentTime，即：歌曲总时长 * value / 100
+	3.设置isSliderChanging：true，更新sliderValue和currentTime
+歌曲歌词匹配：
+	[02:17.160]我誓言要打破这命运的棋局，使用正则匹配出时间和歌词文
+    定义当前歌词文索引(currentLyricIndex)和当前歌词文(currentLyricText)， currentIndex = i - 1,取当前的上一条词文
+    当currentLyricIndex !== currentIndex时，使用currentIndex从lyricInfos中取出当前的Item
+	将Item.text设置给currentLyricText，并更新currentLyricIndex：currentIndex
+
+
+歌曲信息状态和数据共享，保证切换下一首个了，其他地方的数据具有响应式，也要发生变化，采用第三种方式
+1.app.js
+2.getApp().globleData
+3.hy-event-store
+	有一个发生变化，其他地方监听到值变化时，及时更新数据
+
+1.监听音乐播放页面 currentSong totalDuration lyricInfos currentAuthor，setupPlayerStoreListener()
+2.监听audioContext，
+```
 
 ## 项目的上线发布
 

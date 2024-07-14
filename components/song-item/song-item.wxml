@@ -1,4 +1,4 @@
-<view class="song-item">
+<view class="song-item" bind:tap="songDetailItemClickHanle">
   <view class="order">
     <text class="num">{{index + 1}}</text>
     <image class="iamge" src="{{item.al.picUrl}}" mode="widthFix" />
