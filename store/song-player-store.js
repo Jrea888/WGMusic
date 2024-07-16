@@ -2,7 +2,8 @@ import {HYEventStore} from 'hy-event-store'
 import {servicePlayer} from '../service/index'
 import {parseLyric} from '../utils/parse-lyric'
 
-const audioContext = wx.createInnerAudioContext()
+// const audioContext = wx.createInnerAudioContext()
+const audioContext = wx.getBackgroundAudioManager()
 
 const playerStore = new HYEventStore({
   state: {
@@ -16,6 +17,7 @@ const playerStore = new HYEventStore({
     currentLyricIndex: 0,
     currentLyricText: '',
 
+    isStoping: false,
     isPlaying: false,
     isFirstPlay: true,
     playModeIndex: 0, // 0：顺序播放 1：单曲循环 2：随机播放
@@ -24,7 +26,7 @@ const playerStore = new HYEventStore({
     playListSongs: []
   },
   actions: {
-    playSongMusicByIdAction(ctx, { id, isRefresh = false }) {
+    async playSongMusicByIdAction(ctx, { id, isRefresh = false }) {
       // 对于同一首歌不再做播放逻辑处理
       if (ctx.id === id && !isRefresh) {
         this.dispatch("musicPlayStatusChangeAction", true)
@@ -43,21 +45,21 @@ const playerStore = new HYEventStore({
       ctx.currentLyricText = ""
 
       // 获取歌曲详情
-      servicePlayer.getSongDetail(id).then(res => {
-        ctx.currentSong = res.songs[0]
-        ctx.totalDuration = res.songs[0].dt
-        ctx.currentAuthor = res.songs[0].ar.map(v => v.name).join('、')
-      })
+      const detail = await servicePlayer.getSongDetail(id)
+      ctx.currentSong = detail.songs[0]
+      ctx.totalDuration = detail.songs[0].dt
+      ctx.currentAuthor = detail.songs[0].ar.map(v => v.name).join('、')
+
       // 获取歌词信息
-      servicePlayer.getSongLyric(id).then(res => {
-        const lyricString = res.lrc.lyric
-        const lyrics = parseLyric(lyricString)
-        ctx.lyricInfos = lyrics
-      })
+      const lyricInfo =  await servicePlayer.getSongLyric(id)
+      const lyricString = lyricInfo.lrc.lyric
+      const lyrics = parseLyric(lyricString)
+      ctx.lyricInfos = lyrics
 
       // 2.播放对应ID的歌曲
       audioContext.stop()
       audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+      audioContext.title = ctx.currentSong.name
       audioContext.autoplay = true
 
       if (ctx.isFirstPlay) {
@@ -106,10 +108,31 @@ const playerStore = new HYEventStore({
       audioContext.onEnded(() =>{
         this.dispatch("switchSongAction")
       })
+
+      // 4.监听音乐播放/暂停/停止
+      // 播放状态
+      audioContext.onPlay(() => {
+        ctx.isPlaying = true
+      })
+      // 暂停状态
+      audioContext.onPause(() => {
+        ctx.isPlaying = false
+      })
+      // 停止状态
+      audioContext.onStop(() => {
+        ctx.isPlaying = false
+        ctx.isStoping = true
+      })
     },
     // 歌曲暂停 和 播放
-    musicPlayStatusChangeAction(ctx, isPlaying) {
+    musicPlayStatusChangeAction(ctx, isPlaying = true) {
       ctx.isPlaying = isPlaying
+      // 如果是播放状态 且 手动从点击 x 号时，重新播放
+      if (ctx.isStoping && ctx.isPlaying) {
+        audioContext.src = `https://music.163.com/song/media/outer/url?id=${ctx.id}.mp3`
+        audioContext.title = ctx.currentSong.name
+        ctx.isStoping = false
+      }
       ctx.isPlaying ? audioContext.play() : audioContext.pause()
     },
     // 歌曲列表的 上一首和下一首 切换

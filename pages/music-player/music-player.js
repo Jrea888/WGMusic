@@ -63,7 +63,7 @@ Page({
     const currentTime = this.data.totalDuration * value / 100
 
     // 2.设置音频context播放currentTime位置的音乐
-    audioContext.pause()
+    // audioContext.pause()
     audioContext.seek(currentTime / 1000)
 
     // 3.记录最新的sliderValue, 且需要将 isSliderChanging设置回false

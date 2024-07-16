@@ -143,6 +143,12 @@ Page({
   musicStatusChangeHandle() {
     playerStore.dispatch("musicPlayStatusChangeAction", !this.data.isPlaying)
   },
+  // 播放栏进入到播放页面
+  playerBarClickHandle() {
+    wx.navigateTo({
+      url: `/pages/music-player/music-player?id=${this.data.currentSong.id}`,
+    })
+  },
   setupStoreListener() {
     // 1.从发起的请求中，获取对应的数据 -- 推荐歌曲列表
     rankingsSongsState.onState('recommendSongsList', (list) => {

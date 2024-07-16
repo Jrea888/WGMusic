@@ -24,7 +24,7 @@
   <song-menu title="热门歌单" songMenuList="{{hotSongMenu}}"></song-menu>
   <song-menu title="推荐歌单" songMenuList="{{recommendSongMenu}}"></song-menu>
 
-  <view class="peak-ranking">
+  <view class="{{currentSong.id ? '' : 'peak-ranking'}}">
     <area-header title="巅峰榜"></area-header>
     <block wx:for="{{peakRankings}}" wx:key="index">
       <peak-ranking-content peakInfo="{{item}}" bindtap="rankingItemHandle" data-name="{{item.name}}"></peak-ranking-content>
@@ -32,7 +32,8 @@
   </view>
 
   <!-- 底部歌曲播放栏 -->
-  <view class="player-bar">
+  <view class="player-bar-placeholder"  wx:if="{{currentSong.id}}"></view>
+  <view class="player-bar" wx:if="{{currentSong.id}}" bind:tap="playerBarClickHandle">
     <view class="left">
       <image class="avatar animation" src="{{currentSong.al.picUrl}}" mode="aspectFill" style="animation-play-state: {{playAnimation}};"></image>
       <view class="author-info">
@@ -41,9 +42,9 @@
       </view>
     </view>
     <view class="right"> 
-        <view class="prev-btn" bind:tap="playPrevSongHandle"></view>
-        <image class="icon status" src="/assets/image/music/{{ isPlaying ? 'pause' : 'play' }}_icon.png" bind:tap="musicStatusChangeHandle"></image>
-        <view class="next-btn" bind:tap="playNextSongHnadle"></view>
+        <view class="prev-btn" catch:tap="playPrevSongHandle"></view>
+        <image class="icon status" src="/assets/image/music/{{ isPlaying ? 'pause' : 'play' }}_icon.png" catch:tap="musicStatusChangeHandle"></image>
+        <view class="next-btn" catch:tap="playNextSongHnadle"></view>
         <image class="icon playlist" src="/assets/image/music/playlist_icon.png" mode=""></image>
       </view>
   </view>
