@@ -16,10 +16,13 @@ App({
     this.globalData.screenHeight = info.screenHeight
     this.globalData.statusBarHeight = info.statusBarHeight
 
+    this.loginHandle()
+  },
+  async loginHandle() {
     // 2. 让用户默认进行登陆
     const token = wx.getStorageSync(TOKEN_KEY)
     // a.token是否过期
-    const checkResult = await serviceLogin.checkToken(token)
+    const checkResult = await serviceLogin.checkToken()
     // b.session是否过期
     const isSessionExpire = await serviceLogin.checkSession()
 
@@ -33,7 +36,7 @@ App({
     const code = await serviceLogin.getLoginCode()
     console.log(code, 'user code')
 
-    // 2.将code给开发服务器 服务后会把 code + appid + appsecret 这三个作为参数 向微信服务器请求 session_key和openid
+    // 2.将code给开发服务器 服务后会把 code + appid + appsecret 这三个作为参数 向微信服务器请求 session_key和openid, 后端再根据session_key和openid加密一个token
     const res = await serviceLogin.getTokenByCode(code)
     // 将换取的 token 保存到本地，TOKEN_KEY
     wx.setStorageSync(TOKEN_KEY, res.token)

@@ -26,17 +26,17 @@ function getTokenByCode(code) {
     url: "/login",
     data: {
       code
-    }
+    },
+    isAuth: false
   })
 }
 
-function checkToken(token) {
+function checkToken() {
   return serviceLoginRequest.post({
     url: "/auth",
+    data: {},
     header: {},
-    data: {
-      token
-    }
+    isAuth: true
   })
 }
 
