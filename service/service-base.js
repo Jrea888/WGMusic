@@ -1,19 +1,21 @@
 import {
   BASE_URL,
+  BASE_URL_LOGIN,
   TIME_OUT
 } from './config'
 
 class ServiceRequest {
-  baseUrl = ''
-
-  constructor() {
-    this.baseUrl = BASE_URL
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl
   }
+
+  baseUrl = ''
 
   request(options) {
     const {
       url,
-      data
+      data,
+      header
     } = options
     wx.showLoading({
       title: '加载中...',
@@ -21,6 +23,7 @@ class ServiceRequest {
     return new Promise((resolve, reject) => {
       wx.request({
         data,
+        header,
         timeout: TIME_OUT,
         url: this.baseUrl + url,
         success: (res) => {
@@ -53,4 +56,6 @@ class ServiceRequest {
 
 const serviceRequest = new ServiceRequest(BASE_URL)
 
-export {serviceRequest}
+const serviceLoginRequest = new ServiceRequest(BASE_URL_LOGIN)
+
+export {serviceRequest, serviceLoginRequest}
