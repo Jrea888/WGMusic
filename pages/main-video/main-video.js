@@ -47,10 +47,9 @@ Page({
     wx.stopPullDownRefresh()
   },
   videoDetailHandle(e) {
-    console.log('进入详情页面', e.currentTarget.dataset.item)
     const item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pages/vidoe-detail/video-detail?id=${item.id}`,
+      url: `/packageDetail/pages/video-detail/video-detail?id=${item.id}`,
     })
   }
 })

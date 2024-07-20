@@ -30,13 +30,6 @@
           "scene": null
         },
         {
-          "name": "pages/search-page/search-page",
-          "pathName": "pages/search-page/search-page",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "pages/main-music/main-music",
           "pathName": "pages/main-music/main-music",
           "query": "",
@@ -44,8 +37,8 @@
           "scene": null
         },
         {
-          "name": "pages/songs-detail/songs-dedtail",
-          "pathName": "pages/songs-detail/songs-dedtail",
+          "name": "pages/songs-detail/songs-dedail",
+          "pathName": "pages/songs-detail/songs-detail",
           "query": "ranking=upRanking&type=rank",
           "launchMode": "default",
           "scene": null

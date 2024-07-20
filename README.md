@@ -3,7 +3,7 @@
 <img src="https://s21.ax1x.com/2024/07/14/pk4q5fU.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk5Mhse.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk5MIZd.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qqmR.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qTl4.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4q76J.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qL01.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk5MgG6.png" width="400px"/>   <img src="https://s21.ax1x.com/2024/07/14/pk4qOTx.png" width="400px"/>  <img src="https://s21.ax1x.com/2024/07/14/pk5MRxO.png" width="400px"/>
 
 # 学习笔记
-
+* `onReachBottom：上拉加载、onPullDownRefresh：下拉刷新`
 ## 课程介绍和背景
 
 * 认识小程序开发

@@ -2,10 +2,7 @@
   "pages": [
     "pages/main-music/main-music",
     "pages/main-video/main-video",
-    "pages/vidoe-detail/video-detail",
-    "pages/search-page/search-page",
-    "pages/songs-detail/songs-dedtail",
-    "pages/music-player/music-player"
+    "pages/home-profile/home-profile"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -16,7 +13,27 @@
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["audio"],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "subPackages": [
+    {
+      "name": "pPlayer",
+      "root": "packagePlayer",
+      "pages": [
+        "pages/music-player/music-player"
+      ]
+    },
+    {
+      "name": "pDetail",
+      "root": "packageDetail",
+      "pages": [
+        "pages/songs-detail/songs-detail",
+        "pages/video-detail/video-detail",
+        "pages/search-page/search-page"
+      ]
+    }
+  ],
   "lazyCodeLoading": "requiredComponents",
   "tabBar": {
     "list": [
@@ -31,6 +48,12 @@
         "pagePath": "pages/main-video/main-video",
         "iconPath": "assets/image/tabbar/video_normal.png",
         "selectedIconPath": "assets/image/tabbar/video_active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/home-profile/home-profile",
+        "iconPath": "assets/image/tabbar/profile_normal.png",
+        "selectedIconPath": "assets/image/tabbar/profile_active.png"
       }
     ]
   }

@@ -14,7 +14,7 @@ Component({
     menuItemClickHandle(e) {
       const item = e.currentTarget.dataset.item
       wx.navigateTo({
-        url: `/pages/songs-detail/songs-dedtail?id=${item.id}&type=menu`,
+        url: `/packageDetail/pages/songs-detail/songs-detail?id=${item.id}&type=menu`,
       })
     }
   }

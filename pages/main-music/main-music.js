@@ -89,7 +89,7 @@ Page({
   // 点击进入 搜索页面
   onSearchClick() {
     wx.navigateTo({
-      url: '/pages/search-page/search-page',
+      url: '/packageDetail/pages/search-page/search-page',
     })
   },
   // 轮播图片加载完成，获取高度
@@ -124,7 +124,7 @@ Page({
   // 跳转到榜单详情页面
   goToSongsDetailPage(ranking) {
     wx.navigateTo({
-      url: `/pages/songs-detail/songs-dedtail?ranking=${ranking}&type=rank`,
+      url: `/packageDetail/pages/songs-detail/songs-detail?ranking=${ranking}&type=rank`,
     })
   },
   recommendSongItemClickHandle(event) {
@@ -146,7 +146,7 @@ Page({
   // 播放栏进入到播放页面
   playerBarClickHandle() {
     wx.navigateTo({
-      url: `/pages/music-player/music-player?id=${this.data.currentSong.id}`,
+      url: `/packagePlayer/pages/music-player/music-player?id=${this.data.currentSong.id}`,
     })
   },
   setupStoreListener() {

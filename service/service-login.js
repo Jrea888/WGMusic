@@ -14,7 +14,7 @@ function getLoginCode() {
         const code = res.code
         resolve(code)
       },
-      fail: (error) =>{
+      fail: (error) => {
         reject(error)
       }
     })
@@ -53,10 +53,25 @@ function checkSession() {
   })
 }
 
+function getUserInfo() {
+  return new Promise((resolve, reject) => {
+    wx.getUserProfile({
+      desc: '你好！ 张伟刚',
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (error) => {
+        reject(error)
+      }
+    })
+  })
+}
+
 
 export {
   checkToken,
   checkSession,
   getLoginCode,
-  getTokenByCode
+  getTokenByCode,
+  getUserInfo
 }

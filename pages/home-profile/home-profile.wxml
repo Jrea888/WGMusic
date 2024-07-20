@@ -1,0 +1,4 @@
+<button open-type="getUserInfo" bind:tap="getUserInfoHandle">获取用户信息</button>
+<view>{{userInfo.nickName}}</view>
+<image src="{{userInfo.avatarUrl}}" mode="widthFix"></image>
+<button open-type="getPhoneNumber" bindgetphonenumber="getUserPhoneHandle">获取用户电话</button>
